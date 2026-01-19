@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web-server:
+    # Le decimos que use la imagen que se construye con el Dockerfile de aquí
+    build: . 
+    container_name: asir_apache_ubuntu
+    ports:
+      - "8080:80"
+    volumes:
+      # Mapeamos TODA la carpeta de configuración de Ubuntu
+      - ./conf/apache2/:/etc/apache2/
+      # Mapeamos la carpeta de la web
+      - ./www/:/var/www/html/
+    restart: always
